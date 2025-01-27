@@ -6,6 +6,7 @@ require('dotenv').config();
 
 app.use(express.json());
 
+
 app.use(cors({ origin: "http://localhost:5173" }));
 
 //mongoDB connection
@@ -22,10 +23,12 @@ const connectDB = async () => {
 
 //Import routes
 const authRoutes = require('./routes/authRoutes.js');
+const {quizRouter} = require("./routes/quizRoutes.js");
 
 
 //Routes
 app.use('/auth', authRoutes);
+app.use("/quiz",quizRouter);
 
 
 app.listen(6969,() => {
