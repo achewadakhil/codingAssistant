@@ -9,10 +9,7 @@ const isValid = (req,res,next)=>{
         });
     }else{
         req.userId = foundUser;
-        res.status(200).json({
-            message : "Done!!",
-            foundUser
-        })
+        next();
     }
 }
 module.exports ={

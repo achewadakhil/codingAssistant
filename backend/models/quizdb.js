@@ -1,5 +1,5 @@
 const mongoose = require( "mongoose");
-const {Schema} = mongoose;
+const {Schema,ObjectId} = mongoose;
 
 const optSchema = new Schema({
     option : {type : String, required : true} 
@@ -15,10 +15,22 @@ const QuizSchema = new Schema({
     duration : {type : Number , required : true},
     time : {type : Date , required : true},
     code : {type : String, required : true, unique : true},
-    quests : [questSchema]
+    quests : [questSchema],
+    answer : {type : String , required : true}
 });
 
+const participantSchema = new Schema({
+    userId : ObjectId,
+    code : String,
+    percent : Number,
+    participated : Number,
+    average : Number
+})
+
 const quizModel = mongoose.model("quiz",QuizSchema);
+const participantModel = mongoose.model("participants",participantSchema);
+
 module.exports = {
-    quizModel
+    quizModel,
+    participantModel
 }
