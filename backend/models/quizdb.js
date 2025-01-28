@@ -14,7 +14,7 @@ const QuizSchema = new Schema({
     name : {type : String, required : true},
     duration : {type : Number , required : true},
     time : {type : Date , required : true},
-    code : {type : Number, required : true, unique : true},
+    code : {type : String, required : true, unique : true},
     quests : [questSchema]
 });
 
