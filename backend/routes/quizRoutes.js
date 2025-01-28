@@ -29,7 +29,26 @@ quizRouter.post("/create",async (req,res)=>{
     }
 });
 
-
+quizRouter.get("/getquiz",async (req,res)=>{
+    const {name,roomId} = req.query;
+    try{
+        const foundQuiz = await quizModel.findOne({code : roomId});
+        if(foundQuiz){
+            res.status(200).json({
+                message : "/getQuiz working",
+                foundQuiz
+            })
+        }else{
+            res.status(400).json({
+                message : "Invalid room id"
+            })
+        }
+    }catch(err){
+        res.status(500).json({
+            message : "Error in finding the room!!"
+        });
+    }
+})
 
 module.exports = {
     quizRouter
